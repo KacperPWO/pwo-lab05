@@ -6,10 +6,18 @@ import java.io.IOException;
 
 public class SequenceTools {
 
-    private static String getTerms(SequenceGenerator sg,
-            int from, int to, String sep) {
+    private static String getTerms(SequenceGenerator sg, int from, int to, String sep) {
 
-        int i = from, stop = to, step = from > to ? -1 : 1;
+        int i, stop;
+
+        if (from > to) {
+            i = to;
+            stop = from;
+        } else {
+            i = from;
+            stop = to;
+        }
+
         String terms = "";
 
         while (true) {
@@ -17,7 +25,7 @@ public class SequenceTools {
             if (i == stop) {
                 return terms.trim();
             }
-            i += step;
+            i += 1;
         }
     }
 
